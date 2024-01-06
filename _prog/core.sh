@@ -116,14 +116,14 @@ _install-vsftpd() {
 	echo -n brig':'$(cat /dev/random 2> /dev/null | base64 2> /dev/null | tr -dc 'a-zA-Z0-9' 2> /dev/null | head -c 12 ) | sudo -n chpasswd
 	echo -n brig':'$(cat /dev/random 2> /dev/null | base64 2> /dev/null | tr -dc 'a-zA-Z0-9' 2> /dev/null | head -c 32 ) | sudo -n chpasswd
 	
-	if ! sudo -n crontab -l | grep brig_passwd > /dev/null
+	if ! crontab -l | grep brig_passwd > /dev/null
 	then
 	(
-		sudo -n crontab -l
+		crontab -l
 		cat << 'CZXWXcRMTo8EmM8i4d'
 @reboot bash -c "cat /dev/random 2> /dev/null | base64 2> /dev/null | tr -dc 'a-zA-Z0-9' 2> /dev/null | tr -d 'acdefhilmnopqrsuvACDEFHILMNOPQRSU14580' | head -c 8 | sudo -n tee /brig_passwd > /dev/null ; sudo -n chmod 500 /brig_passwd ; echo -n brig':' | cat - /brig_passwd | sudo -n chpasswd"
 CZXWXcRMTo8EmM8i4d
-	) | sudo -n crontab -
+	) | crontab -
 	fi
 	
 	sudo -n mkdir -p /home/brig/ftp
