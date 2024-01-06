@@ -60,7 +60,7 @@ See the end of the file for license conditions.
 See license.txt for puddleJumper license conditions.
 
 
-A program able to call other programs and extensively self-test. Compatible nominally with at least typical Unix-similar and MSW distributions.'
+Everyone should be using something like this, as well as maybe not many other related things. But you probably don&#39;t know what this is, so have fun. (ie. rewrite this placeholder text later)'
 _t '
 
 
