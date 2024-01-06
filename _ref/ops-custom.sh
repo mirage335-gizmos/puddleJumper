@@ -5,6 +5,12 @@
 
 
 
+
+# NOTICE
+#_custom_kernel_server-sequence
+
+
+# NOTICE
 _custom_qemu() {
 	_start
 	

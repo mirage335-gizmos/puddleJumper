@@ -98,6 +98,19 @@ _paragraph_begin
 _t ' '
 _paragraph_end
 _t '
+https://linux.die.net/man/5/vsftpd.conf
+	MAJOR - &#39;Default: NO (but the sample config file enables it)&#39;
+	MAJOR - delete_failed_uploads
+
+https://serverfault.com/questions/243816/vsftpd-allow-access-only-for-certain-users
+	&#39;userlist_enable=YES
+	userlist_file=/etc/vsftpd.userlist
+	userlist_deny=NO&#39;
+
+https://wiki.debian.org/vsftpd
+
+https://askubuntu.com/questions/239239/error-message-500-oops-vsftpd-refusing-to-run-with-writable-root-inside-chroo
+
 
 
 '
