@@ -36,7 +36,7 @@ _ub_cksum_special_derivativeScripts_contents() {
 #export ub_setScriptChecksum_disable='true'
 ( [[ -e "$0".nck ]] || [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ "$1" == '--profile' ]] || [[ "$1" == '--script' ]] || [[ "$1" == '--call' ]] || [[ "$1" == '--return' ]] || [[ "$1" == '--devenv' ]] || [[ "$1" == '--shell' ]] || [[ "$1" == '--bypass' ]] || [[ "$1" == '--parent' ]] || [[ "$1" == '--embed' ]] || [[ "$1" == '--compressed' ]] || [[ "$0" == "/bin/bash" ]] || [[ "$0" == "-bash" ]] || [[ "$0" == "/usr/bin/bash" ]] || [[ "$0" == "bash" ]] ) && export ub_setScriptChecksum_disable='true'
 export ub_setScriptChecksum_header='2591634041'
-export ub_setScriptChecksum_contents='1662155705'
+export ub_setScriptChecksum_contents='1909971413'
 
 # CAUTION: Symlinks may cause problems. Disable this test for such cases if necessary.
 # WARNING: Performance may be crucial here.
@@ -35903,82 +35903,82 @@ _package() {
 
 
 _install-remove() {
-	_chroot sudo -n systemctl disable docker
-	_chroot systemctl disable docker.service
-	_chroot sudo -n systemctl mask docker
-	_chroot systemctl mask docker.service
-	_chroot sudo -n systemctl stop docker
-	_chroot systemctl stop docker.service
+
+	sudo -n systemctl disable docker.service
+
+	sudo -n systemctl mask docker.service
+
+	sudo -n systemctl stop docker.service
 	
 	
-	_chroot sudo -n systemctl disable vboxadd
-	_chroot systemctl disable vboxadd.service
-	_chroot sudo -n systemctl mask vboxadd
-	_chroot systemctl mask vboxadd.service
-	_chroot sudo -n systemctl stop vboxadd
-	_chroot systemctl stop vboxadd.service
+
+	sudo -n systemctl disable vboxadd.service
+
+	sudo -n systemctl mask vboxadd.service
+
+	sudo -n systemctl stop vboxadd.service
 	
 	
-	_chroot sudo -n systemctl disable vboxadd-service
-	_chroot systemctl disable vboxadd-service.service
-	_chroot sudo -n systemctl mask vboxadd-service
-	_chroot systemctl mask vboxadd-service.service
-	_chroot sudo -n systemctl stop vboxadd-service
-	_chroot systemctl stop vboxadd-service.service
+
+	sudo -n systemctl disable vboxadd-service.service
+
+	sudo -n systemctl mask vboxadd-service.service
+
+	sudo -n systemctl stop vboxadd-service.service
 	
 	
-	_chroot sudo -n systemctl disable vboxautostart
-	_chroot systemctl disable vboxautostart.service
-	_chroot sudo -n systemctl mask vboxautostart
-	_chroot systemctl mask vboxautostart.service
-	_chroot sudo -n systemctl stop vboxautostart
-	_chroot systemctl stop vboxautostart.service
+
+	sudo -n systemctl disable vboxautostart.service
+
+	sudo -n systemctl mask vboxautostart.service
+
+	sudo -n systemctl stop vboxautostart.service
 	
 	
-	_chroot sudo -n systemctl disable vboxautostart-service
-	_chroot systemctl disable vboxautostart-service.service
-	_chroot sudo -n systemctl mask vboxautostart-service
-	_chroot systemctl mask vboxautostart-service.service
-	_chroot sudo -n systemctl stop vboxautostart-service
-	_chroot systemctl stop vboxautostart-service.service
+
+	sudo -n systemctl disable vboxautostart-service.service
+
+	sudo -n systemctl mask vboxautostart-service.service
+
+	sudo -n systemctl stop vboxautostart-service.service
 	
 	
-	_chroot sudo -n systemctl disable vboxdrv
-	_chroot systemctl disable vboxdrv.service
-	_chroot sudo -n systemctl mask vboxdrv
-	_chroot systemctl mask vboxdrv.service
-	_chroot sudo -n systemctl stop vboxdrv
-	_chroot systemctl stop vboxdrv.service
+
+	sudo -n systemctl disable vboxdrv.service
+
+	sudo -n systemctl mask vboxdrv.service
+
+	sudo -n systemctl stop vboxdrv.service
 	
 	
-	_chroot sudo -n systemctl disable vboxweb
-	_chroot systemctl disable vboxweb.service
-	_chroot sudo -n systemctl mask vboxweb
-	_chroot systemctl mask vboxweb.service
-	_chroot sudo -n systemctl stop vboxweb
-	_chroot systemctl stop vboxweb.service
+
+	sudo -n systemctl disable vboxweb.service
+
+	sudo -n systemctl mask vboxweb.service
+
+	sudo -n systemctl stop vboxweb.service
 	
 	
-	_chroot sudo -n systemctl disable vboxweb-service
-	_chroot systemctl disable vboxweb-service.service
-	_chroot sudo -n systemctl mask vboxweb-service
-	_chroot systemctl mask vboxweb-service.service
-	_chroot sudo -n systemctl stop vboxweb-service
-	_chroot systemctl stop vboxweb-service.service
-	
-	
-	
+
+	sudo -n systemctl disable vboxweb-service.service
+
+	sudo -n systemctl mask vboxweb-service.service
+
+	sudo -n systemctl stop vboxweb-service.service
 	
 	
 	
 	
 	
-	#_chroot sudo -n systemctl disable cups
-	#_chroot systemctl disable cups.service
-	#_chroot sudo -n systemctl mask cups
-	#_chroot systemctl mask cups.service
-	#_chroot sudo -n systemctl stop cups
-	#_chroot systemctl stop cups.service
+	
+	
+	
+	#sudo -n sudo -n systemctl disable cups
+	#sudo -n systemctl disable cups.service
+	#sudo -n sudo -n systemctl mask cups
+	#sudo -n systemctl mask cups.service
+	#sudo -n sudo -n systemctl stop cups
+	#sudo -n systemctl stop cups.service
 	
 	
 	
@@ -35997,7 +35997,7 @@ _install-remove() {
 
 _install-vsftpd() {
 	
-	sudo -n mkdir /etc/ssl/private
+	sudo -n mkdir -p /etc/ssl/private
 	sudo -n chmod 710 /etc/ssl/private
 	sudo -n openssl req -x509 -nodes -days 12775 -newkey rsa:4096 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt -subj "/C=US/ST=NY/L=NYC/O=organization/CN=commonName.local/emailAddress=user@email.com"
 	
@@ -36044,12 +36044,12 @@ CZXWXcRMTo8EmM8i4d
 	
 	
 	
-	_chroot sudo -n systemctl enable vsftpd
-	_chroot systemctl enable vsftpd.service
-	_chroot sudo -n systemctl unmask vsftpd
-	_chroot systemctl unmask vsftpd.service
-	_chroot sudo -n systemctl restart vsftpd
-	_chroot systemctl restart vsftpd.service
+
+	sudo -n systemctl enable vsftpd.service
+
+	sudo -n systemctl unmask vsftpd.service
+
+	sudo -n systemctl restart vsftpd.service
 	
 	
 }

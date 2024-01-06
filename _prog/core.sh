@@ -2,82 +2,82 @@
 
 
 _install-remove() {
-	_chroot sudo -n systemctl disable docker
-	_chroot systemctl disable docker.service
-	_chroot sudo -n systemctl mask docker
-	_chroot systemctl mask docker.service
-	_chroot sudo -n systemctl stop docker
-	_chroot systemctl stop docker.service
+
+	sudo -n systemctl disable docker.service
+
+	sudo -n systemctl mask docker.service
+
+	sudo -n systemctl stop docker.service
 	
 	
-	_chroot sudo -n systemctl disable vboxadd
-	_chroot systemctl disable vboxadd.service
-	_chroot sudo -n systemctl mask vboxadd
-	_chroot systemctl mask vboxadd.service
-	_chroot sudo -n systemctl stop vboxadd
-	_chroot systemctl stop vboxadd.service
+
+	sudo -n systemctl disable vboxadd.service
+
+	sudo -n systemctl mask vboxadd.service
+
+	sudo -n systemctl stop vboxadd.service
 	
 	
-	_chroot sudo -n systemctl disable vboxadd-service
-	_chroot systemctl disable vboxadd-service.service
-	_chroot sudo -n systemctl mask vboxadd-service
-	_chroot systemctl mask vboxadd-service.service
-	_chroot sudo -n systemctl stop vboxadd-service
-	_chroot systemctl stop vboxadd-service.service
+
+	sudo -n systemctl disable vboxadd-service.service
+
+	sudo -n systemctl mask vboxadd-service.service
+
+	sudo -n systemctl stop vboxadd-service.service
 	
 	
-	_chroot sudo -n systemctl disable vboxautostart
-	_chroot systemctl disable vboxautostart.service
-	_chroot sudo -n systemctl mask vboxautostart
-	_chroot systemctl mask vboxautostart.service
-	_chroot sudo -n systemctl stop vboxautostart
-	_chroot systemctl stop vboxautostart.service
+
+	sudo -n systemctl disable vboxautostart.service
+
+	sudo -n systemctl mask vboxautostart.service
+
+	sudo -n systemctl stop vboxautostart.service
 	
 	
-	_chroot sudo -n systemctl disable vboxautostart-service
-	_chroot systemctl disable vboxautostart-service.service
-	_chroot sudo -n systemctl mask vboxautostart-service
-	_chroot systemctl mask vboxautostart-service.service
-	_chroot sudo -n systemctl stop vboxautostart-service
-	_chroot systemctl stop vboxautostart-service.service
+
+	sudo -n systemctl disable vboxautostart-service.service
+
+	sudo -n systemctl mask vboxautostart-service.service
+
+	sudo -n systemctl stop vboxautostart-service.service
 	
 	
-	_chroot sudo -n systemctl disable vboxdrv
-	_chroot systemctl disable vboxdrv.service
-	_chroot sudo -n systemctl mask vboxdrv
-	_chroot systemctl mask vboxdrv.service
-	_chroot sudo -n systemctl stop vboxdrv
-	_chroot systemctl stop vboxdrv.service
+
+	sudo -n systemctl disable vboxdrv.service
+
+	sudo -n systemctl mask vboxdrv.service
+
+	sudo -n systemctl stop vboxdrv.service
 	
 	
-	_chroot sudo -n systemctl disable vboxweb
-	_chroot systemctl disable vboxweb.service
-	_chroot sudo -n systemctl mask vboxweb
-	_chroot systemctl mask vboxweb.service
-	_chroot sudo -n systemctl stop vboxweb
-	_chroot systemctl stop vboxweb.service
+
+	sudo -n systemctl disable vboxweb.service
+
+	sudo -n systemctl mask vboxweb.service
+
+	sudo -n systemctl stop vboxweb.service
 	
 	
-	_chroot sudo -n systemctl disable vboxweb-service
-	_chroot systemctl disable vboxweb-service.service
-	_chroot sudo -n systemctl mask vboxweb-service
-	_chroot systemctl mask vboxweb-service.service
-	_chroot sudo -n systemctl stop vboxweb-service
-	_chroot systemctl stop vboxweb-service.service
-	
-	
-	
+
+	sudo -n systemctl disable vboxweb-service.service
+
+	sudo -n systemctl mask vboxweb-service.service
+
+	sudo -n systemctl stop vboxweb-service.service
 	
 	
 	
 	
 	
-	#_chroot sudo -n systemctl disable cups
-	#_chroot systemctl disable cups.service
-	#_chroot sudo -n systemctl mask cups
-	#_chroot systemctl mask cups.service
-	#_chroot sudo -n systemctl stop cups
-	#_chroot systemctl stop cups.service
+	
+	
+	
+	#sudo -n sudo -n systemctl disable cups
+	#sudo -n systemctl disable cups.service
+	#sudo -n sudo -n systemctl mask cups
+	#sudo -n systemctl mask cups.service
+	#sudo -n sudo -n systemctl stop cups
+	#sudo -n systemctl stop cups.service
 	
 	
 	
@@ -96,7 +96,7 @@ _install-remove() {
 
 _install-vsftpd() {
 	
-	sudo -n mkdir /etc/ssl/private
+	sudo -n mkdir -p /etc/ssl/private
 	sudo -n chmod 710 /etc/ssl/private
 	sudo -n openssl req -x509 -nodes -days 12775 -newkey rsa:4096 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt -subj "/C=US/ST=NY/L=NYC/O=organization/CN=commonName.local/emailAddress=user@email.com"
 	
@@ -143,12 +143,12 @@ CZXWXcRMTo8EmM8i4d
 	
 	
 	
-	_chroot sudo -n systemctl enable vsftpd
-	_chroot systemctl enable vsftpd.service
-	_chroot sudo -n systemctl unmask vsftpd
-	_chroot systemctl unmask vsftpd.service
-	_chroot sudo -n systemctl restart vsftpd
-	_chroot systemctl restart vsftpd.service
+
+	sudo -n systemctl enable vsftpd.service
+
+	sudo -n systemctl unmask vsftpd.service
+
+	sudo -n systemctl restart vsftpd.service
 	
 	
 }
