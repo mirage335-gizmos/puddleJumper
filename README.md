@@ -65,9 +65,15 @@ See the end of the file for license conditions.
 See license.txt for puddleJumper license conditions.
 
 
-Everyone should be using something like this, as well as maybe not many 
-other related things. But you probably don&#39;t know what this is, so have 
-fun. (ie. rewrite this placeholder text later)
+Fast equivalent to a USB flash drive without possibility of BadUSB attacks 
+or unsafe bridging of networks. With appropriate OS hardening, buffer 
+overflow through malformed network packets may be preventable. 
+Configuration is performed for such a dedicated computer which is ONLY 
+connected to one computer at a time.
+
+Optical Data Diode is also still appropriate if possible, to completely 
+eliminate improper data flow direction due to malformed network packets 
+causing buffer overflow.
 <!-- # --></pre><!-- scriptedIllustrator_markup_uk4uPhB663kVcygT0q
 '
 _t '
@@ -155,7 +161,9 @@ if false; then true; # -->
 <!--
 fi
 _t '
-scriptedIllustrator_markup_uk4uPhB663kVcygT0q --><!-- # --><pre style="margin-top: 0px;margin-bottom: 0px;white-space: pre-wrap;"> 
+scriptedIllustrator_markup_uk4uPhB663kVcygT0q --><!-- # --><pre style="margin-top: 0px;margin-bottom: 0px;white-space: pre-wrap;">
+DANGER: Do NOT connect a puddleJumper to multiple computers, or directly to 
+a network bridge. ALWAYS connect directly to ONLY ONE computer.
 <!-- # --></pre><!-- scriptedIllustrator_markup_uk4uPhB663kVcygT0q
 '
  '_paragraph_end'
