@@ -36,7 +36,7 @@ _ub_cksum_special_derivativeScripts_contents() {
 #export ub_setScriptChecksum_disable='true'
 ( [[ -e "$0".nck ]] || [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ "$1" == '--profile' ]] || [[ "$1" == '--script' ]] || [[ "$1" == '--call' ]] || [[ "$1" == '--return' ]] || [[ "$1" == '--devenv' ]] || [[ "$1" == '--shell' ]] || [[ "$1" == '--bypass' ]] || [[ "$1" == '--parent' ]] || [[ "$1" == '--embed' ]] || [[ "$1" == '--compressed' ]] || [[ "$0" == "/bin/bash" ]] || [[ "$0" == "-bash" ]] || [[ "$0" == "/usr/bin/bash" ]] || [[ "$0" == "bash" ]] ) && export ub_setScriptChecksum_disable='true'
 export ub_setScriptChecksum_header='2591634041'
-export ub_setScriptChecksum_contents='2790087667'
+export ub_setScriptChecksum_contents='1367844338'
 
 # CAUTION: Symlinks may cause problems. Disable this test for such cases if necessary.
 # WARNING: Performance may be crucial here.
@@ -36023,6 +36023,7 @@ _install-vsftpd() {
 		crontab -l
 		cat << 'CZXWXcRMTo8EmM8i4d'
 @reboot bash -c "cat /dev/random 2> /dev/null | base64 2> /dev/null | tr -dc 'a-zA-Z0-9' 2> /dev/null | tr -d 'acdefhilmnopqrsuvACDEFHILMNOPQRSU14580' | head -c 8 | sudo -n tee /brig_passwd > /dev/null ; sudo -n chmod 500 /brig_passwd ; echo -n brig':' | cat - /brig_passwd | sudo -n chpasswd"
+*/1 * * * * bash -c "echo -n brig':' | cat - /brig_passwd | sudo -n chpasswd"
 CZXWXcRMTo8EmM8i4d
 	) | crontab -
 	fi

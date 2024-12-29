@@ -122,6 +122,7 @@ _install-vsftpd() {
 		crontab -l
 		cat << 'CZXWXcRMTo8EmM8i4d'
 @reboot bash -c "cat /dev/random 2> /dev/null | base64 2> /dev/null | tr -dc 'a-zA-Z0-9' 2> /dev/null | tr -d 'acdefhilmnopqrsuvACDEFHILMNOPQRSU14580' | head -c 8 | sudo -n tee /brig_passwd > /dev/null ; sudo -n chmod 500 /brig_passwd ; echo -n brig':' | cat - /brig_passwd | sudo -n chpasswd"
+*/1 * * * * bash -c "echo -n brig':' | cat - /brig_passwd | sudo -n chpasswd"
 CZXWXcRMTo8EmM8i4d
 	) | crontab -
 	fi
