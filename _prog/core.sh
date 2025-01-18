@@ -86,6 +86,13 @@ _install-remove() {
 	sudo -n apt-get -y remove 'virtualbox*'
 	
 	sudo -n apt-get -y remove 'docker*'
+
+	sudo -n apt-get -y remove 'containerd*'
+	sudo -n apt-get -y remove '*docker'
+	sudo -n apt-get -y remove '*docker*'
+	sudo -n apt-get -y remove 'tini'
+
+	sudo -n apt-get -y autoremove
 	
 	
 }

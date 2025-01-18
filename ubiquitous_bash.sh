@@ -36,7 +36,7 @@ _ub_cksum_special_derivativeScripts_contents() {
 #export ub_setScriptChecksum_disable='true'
 ( [[ -e "$0".nck ]] || [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ "$1" == '--profile' ]] || [[ "$1" == '--script' ]] || [[ "$1" == '--call' ]] || [[ "$1" == '--return' ]] || [[ "$1" == '--devenv' ]] || [[ "$1" == '--shell' ]] || [[ "$1" == '--bypass' ]] || [[ "$1" == '--parent' ]] || [[ "$1" == '--embed' ]] || [[ "$1" == '--compressed' ]] || [[ "$0" == "/bin/bash" ]] || [[ "$0" == "-bash" ]] || [[ "$0" == "/usr/bin/bash" ]] || [[ "$0" == "bash" ]] ) && export ub_setScriptChecksum_disable='true'
 export ub_setScriptChecksum_header='2591634041'
-export ub_setScriptChecksum_contents='1114024527'
+export ub_setScriptChecksum_contents='3854872182'
 
 # CAUTION: Symlinks may cause problems. Disable this test for such cases if necessary.
 # WARNING: Performance may be crucial here.
@@ -780,9 +780,12 @@ then
 		false
 	}
 
+	# ATTENTION: Sets the priority for '_wsl' as well as 'u' shortcuts. Override with '_bashrc' or similar as desired (eg. replace 'ubdist_embedded' with some specialized 3D printer firwmare/klipper dist/OS, etc).
 	_wsl() {
 		local currentBin_wsl
-		currentBin_wsl=$(type -p wsl)
+		#currentBin_wsl=$(type -p wsl)
+
+		currentBin_wsl="wsl"
 
 		if ( [[ "$1" != "-"* ]] || [[ "$1" == "-u" ]] || [[ "$1" == "-e" ]] || [[ "$1" == "--exec" ]] ) && ( [[ "$1" != "-d" ]] || [[ "$2" != "-d" ]] || [[ "$3" != "-d" ]] || [[ "$4" != "-d" ]] || [[ "$5" != "-d" ]] || [[ "$6" != "-d" ]] )
 		then
@@ -6804,7 +6807,30 @@ _fetchDep_debianBookworm_special() {
 		
 		sudo -n env DEBIAN_FRONTEND=noninteractive apt-get remove -y docker docker-engine docker.io docker-ce docker
 		sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y docker-ce
-		sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y docker-compose-plugin
+		#sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y docker-compose-plugin
+		sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y docker-ce
+
+		
+		# WARNING: Untested. May cause problems.
+		#_getMost_backend_aptGetInstall docker-ce
+		##_getMost_backend_aptGetInstall docker-compose-plugin
+		#_getMost_backend_aptGetInstall docker-ce
+		#_getMost_backend_aptGetInstall docker-buildx-plugin docker-ce-cli docker-ce-rootless-extras
+		_getMost_backend apt-get -d install -y docker-ce
+		#_getMost_backend apt-get -d install -y docker-compose-plugin
+		_getMost_backend apt-get -d install -y docker-ce
+		#_getMost_backend apt-get -d install -y docker-buildx-plugin docker-ce-cli docker-ce-rootless-extras
+
+		# ATTENTION: Speculative . May be untested. Enable if ever necessary.
+		#https://docs.docker.com/compose/install/
+		#https://docs.docker.com/compose/install/linux/#install-the-plugin-manually
+		#if ! _getMost_backend type docker-compose > /dev/null 2>&1
+		#then
+			#mkdir -p /usr/local/lib/docker/cli-plugins/docker-compose
+			#curl -SL https://github.com/docker/compose/releases/download/v2.32.2/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
+			#chmod 755 /usr/local/lib/docker/cli-plugins/docker-compose
+		#fi
+
 		
 		sudo -n usermod -a -G docker "$USER"
 		
@@ -6826,6 +6852,7 @@ _fetchDep_debianBookworm_special() {
 		
 		#sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y atom
 		
+		#return 0
 		return 1
 	fi
 	
@@ -7272,7 +7299,7 @@ _fetchDep_debianBullseye_special() {
 		return 0
 	fi
 	
-	if [[ "$1" == "docker" ]]
+	if [[ "$1" == "docker" ]] || [[ "$1" == "docker-compose" ]]
 	then
 		sudo -n update-alternatives --set iptables /usr/sbin/iptables-legacy
 		sudo -n update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
@@ -7318,6 +7345,7 @@ _fetchDep_debianBullseye_special() {
 		
 		#sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y atom
 		
+		#return 0
 		return 1
 	fi
 	
@@ -7783,7 +7811,7 @@ _fetchDep_ubuntuFocalFossa_special() {
 		return 0
 	fi
 	
-	if [[ "$1" == "docker" ]]
+	if [[ "$1" == "docker" ]] || [[ "$1" == "docker-compose" ]]
 	then
 		sudo -n update-alternatives --set iptables /usr/sbin/iptables-legacy
 		sudo -n update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
@@ -7822,14 +7850,15 @@ _fetchDep_ubuntuFocalFossa_special() {
 	
 	if [[ "$1" == "atom" ]]
 	then
-		curl -L https://packagecloud.io/AtomEditor/atom/gpgkey | sudo -n apt-key add -
-		sudo -n sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/ub_atom.list'
+		#curl -L https://packagecloud.io/AtomEditor/atom/gpgkey | sudo -n apt-key add -
+		#sudo -n sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/ub_atom.list'
 		
-		sudo -n env DEBIAN_FRONTEND=noninteractive apt-get -y update
+		#sudo -n env DEBIAN_FRONTEND=noninteractive apt-get -y update
 		
-		sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y atom
+		#sudo -n env DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -y atom
 		
-		return 0
+		#return 0
+		return 1
 	fi
 	
 	if [[ "$1" == "GL/gl.h" ]] || [[ "$1" == "GL/glext.h" ]] || [[ "$1" == "GL/glx.h" ]] || [[ "$1" == "GL/glxext.h" ]] || [[ "$1" == "GL/dri_interface.h" ]] || [[ "$1" == "x86_64-linux-gnu/pkgconfig/dri.pc" ]]
@@ -8698,14 +8727,28 @@ _getMost_debian11_install() {
 		# WARNING: Untested. May be old version of VirtualBox. May conflict with guest additions.
 		#_getMost_backend_aptGetInstall virtualbox-6.1
 		_getMost_backend apt-get -d install -y virtualbox-6.1
-		
-		
-		# WARNING: Untested. May cause problems.
-		#_getMost_backend_aptGetInstall docker-ce
-		#_getMost_backend_aptGetInstall docker-compose-plugin
-		_getMost_backend apt-get -d install -y docker-ce
-		_getMost_backend apt-get -d install -y docker-compose-plugin
 	fi
+
+		
+	# WARNING: May be untested. May cause problems.
+	#_getMost_backend_aptGetInstall docker-ce
+	##_getMost_backend_aptGetInstall docker-compose-plugin
+	#_getMost_backend_aptGetInstall docker-ce
+	#_getMost_backend_aptGetInstall docker-buildx-plugin docker-ce-cli docker-ce-rootless-extras
+	_getMost_backend apt-get -d install -y docker-ce
+	#_getMost_backend apt-get -d install -y docker-compose-plugin
+	_getMost_backend apt-get -d install -y docker-ce
+	#_getMost_backend apt-get -d install -y docker-buildx-plugin docker-ce-cli docker-ce-rootless-extras
+
+	# ATTENTION: Speculative . May be untested. Enable if ever necessary.
+	#https://docs.docker.com/compose/install/
+	#https://docs.docker.com/compose/install/linux/#install-the-plugin-manually
+	#if ! _getMost_backend type docker-compose > /dev/null 2>&1
+	#then
+		#mkdir -p /usr/local/lib/docker/cli-plugins/docker-compose
+		#curl -SL https://github.com/docker/compose/releases/download/v2.32.2/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
+		#chmod 755 /usr/local/lib/docker/cli-plugins/docker-compose
+	#fi
 	
 	
 	# WARNING: If VirtualBox was not installed by now (eg. due to 'if false' comment block or wrong distribution), this must be called later.
@@ -9599,6 +9642,9 @@ _getMinimal_cloud() {
 	_getMost_backend_aptGetInstall bzip2
 	
 	_getMost_backend_aptGetInstall flex
+
+	_getMost_backend_aptGetInstall imagemagick
+	_getMost_backend_aptGetInstall graphicsmagick-imagemagick-compat
 	
 	_getMost_backend_aptGetInstall librecode0
 	_getMost_backend_aptGetInstall wkhtmltopdf
@@ -9738,6 +9784,7 @@ _getMinimal_cloud() {
 	
 	_getMost_backend_aptGetInstall debootstrap
 	
+	#_getMost_backend_aptGetInstall qemu-user qemu-utils
 	_getMost_backend_aptGetInstall qemu-system-x86
 	
 	_getMost_backend_aptGetInstall cifs-utils
@@ -28701,6 +28748,8 @@ _setupUbiquitous_resize() {
 	echo "# Hardware serial terminals connected through screen require explicit resize to change number of columns/lines. Usually doing this once will at least increase the usable 'screen real estate' from the very small defaults."
 	echo "# Ignored by Cygwin/MSW, etc."
 	echo "type -p resize > /dev/null 2>&1 && resize > /dev/null 2>&1"
+	echo "true"
+	
 }
 
 _configureLocal() {
@@ -35667,7 +35716,9 @@ _checkSpecialLocks() {
 #"$1" == waitOpen function && shift
 #"$@" == wrapped function and parameters
 #"$specialLock" == additional lockfile to write
-_open_sequence() {
+_open_procedure() {
+	mkdir -p "$scriptLocal"
+	
 	if _readLocked "$lock_open"
 	then
 		_checkSpecialLocks && return 1
@@ -35714,7 +35765,7 @@ _open_sequence() {
 _open() {
 	local returnStatus
 	
-	_open_sequence "$@"
+	_open_procedure "$@"
 	returnStatus="$?"
 	
 	export specialLock
@@ -35729,7 +35780,7 @@ _open() {
 #"$1" == waitClose function && shift
 #"$@" == wrapped function and parameters
 #"$specialLock" == additional lockfile to remove
-_close_sequence() {
+_close_procedure() {
 	local closeForceEnable
 	closeForceEnable=false
 	
@@ -35795,7 +35846,7 @@ _close_sequence() {
 _close() {
 	local returnStatus
 	
-	_close_sequence "$@"
+	_close_procedure "$@"
 	returnStatus="$?"
 	
 	export specialLock
@@ -38228,6 +38279,13 @@ _install-remove() {
 	sudo -n apt-get -y remove 'virtualbox*'
 	
 	sudo -n apt-get -y remove 'docker*'
+
+	sudo -n apt-get -y remove 'containerd*'
+	sudo -n apt-get -y remove '*docker'
+	sudo -n apt-get -y remove '*docker*'
+	sudo -n apt-get -y remove 'tini'
+
+	sudo -n apt-get -y autoremove
 	
 	
 }
@@ -39567,6 +39625,12 @@ _deps_w540() {
 	export enUb_w540="true"
 }
 
+_deps_gpd() {
+	_deps_notLean
+	_deps_hardware
+	export enUb_gpd="true"
+}
+
 _deps_peripherial() {
 	_deps_notLean
 	_deps_hardware
@@ -40160,6 +40224,7 @@ _compile_bash_deps() {
 		_deps_measurement
 		_deps_x220t
 		_deps_w540
+		_deps_gpd
 		
 		_deps_generic
 		
@@ -40374,6 +40439,7 @@ _compile_bash_deps() {
 		#_deps_measurement
 		#_deps_x220t
 		#_deps_w540
+		#_deps_gpd
 		#_deps_peripherial
 		
 		#_deps_user
@@ -40478,6 +40544,7 @@ _compile_bash_deps() {
 		#_deps_measurement
 		#_deps_x220t
 		#_deps_w540
+		#_deps_gpd
 		#_deps_peripherial
 		
 		#_deps_user
@@ -40582,6 +40649,7 @@ _compile_bash_deps() {
 		_deps_measurement
 		_deps_x220t
 		_deps_w540
+		_deps_gpd
 		_deps_peripherial
 		
 		_deps_user
@@ -41074,6 +41142,8 @@ _compile_bash_hardware() {
 	[[ "$enUb_hardware" == "true" ]] && [[ "$enUb_w540" == "true" ]] && includeScriptList+=( "hardware/w540"/w540_fan.sh )
 	
 	[[ "$enUb_hardware" == "true" ]] && [[ "$enUb_peripherial" == "true" ]] && includeScriptList+=( "hardware/peripherial/h1060p"/h1060p.sh )
+	
+	[[ "$enUb_hardware" == "true" ]] && [[ "$enUb_gpd" == "true" ]] && includeScriptList+=( "hardware/gpdWinMini2024_8840U"/gpdWinMini2024_8840U_fan.sh )
 
 	( [[ "$enUb_hardware" == "true" ]] || [[ "$enUb_measurement" == "true" ]] ) && includeScriptList+=( "hardware/measurement"/live_hash.sh )
 }
